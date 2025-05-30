@@ -25,7 +25,7 @@ $new_result = mysqli_query($conn, $new_query);
 <body>
     <?php include 'includes/header.php'; ?>
 
-
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>PRECISÃO ENGENHADA <span class="text-neon">PARA GAMERS</span></h1>
@@ -60,7 +60,7 @@ $new_result = mysqli_query($conn, $new_query);
         </div>
     </section>
 
-    
+ 
     <section class="categories container section">
         <div class="section-header">
             <h2>COMPRE POR <span class="text-neon">CATEGORIA</span></h2>
@@ -86,7 +86,6 @@ $new_result = mysqli_query($conn, $new_query);
         </div>
     </section>
 
-    
     <section class="container section">
         <div class="section-header">
             <h2>NOVOS <span class="text-neon">LANÇAMENTOS</span></h2>
