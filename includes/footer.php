@@ -64,5 +64,5 @@
     </div>
 </footer>
 
-<!-- Notification Template -->
+
 <div class="notification-container" id="notificationContainer"></div>

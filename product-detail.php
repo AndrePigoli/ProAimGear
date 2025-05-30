@@ -21,14 +21,14 @@ if(mysqli_num_rows($product_result) == 0) {
 
 $product = mysqli_fetch_assoc($product_result);
 
-// Get related products
+
 $related_query = "SELECT * FROM products 
                   WHERE category_id = {$product['category_id']} 
                   AND id != $product_id 
                   LIMIT 4";
 $related_result = mysqli_query($conn, $related_query);
 
-// Handle add to cart action
+
 if(isset($_POST['add_to_cart'])) {
     $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
     add_to_cart($product_id, $quantity);
@@ -123,7 +123,7 @@ if(isset($_POST['add_to_cart'])) {
             </div>
         </div>
         
-        <!-- Related Products -->
+    
         <?php if(mysqli_num_rows($related_result) > 0): ?>
         <section class="related-products section">
             <div class="section-header">

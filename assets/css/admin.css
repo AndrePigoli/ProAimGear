@@ -1,5 +1,5 @@
 :root {
-    /* Color Variables */
+    
     --color-dark: #0c0c0f;
     --color-dark-2: #16161a;
     --color-dark-3: #212124;
@@ -14,7 +14,7 @@
     --color-warning: #ffbb33;
     --color-error: #ff3355;
     
-    /* Spacing */
+    
     --spacing-xs: 4px;
     --spacing-sm: 8px;
     --spacing-md: 16px;
@@ -22,17 +22,17 @@
     --spacing-xl: 32px;
     --spacing-xxl: 48px;
     
-    /* Border Radius */
+   
     --border-radius-sm: 4px;
     --border-radius-md: 8px;
     --border-radius-lg: 12px;
     
-    /* Transition */
+   
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
     
-    /* Shadows */
+   
     --shadow-small: 0 2px 8px rgba(0, 0, 0, 0.2);
     --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.3);
     --shadow-large: 0 8px 24px rgba(0, 0, 0, 0.4);
@@ -40,7 +40,7 @@
     --shadow-neon-red: 0 0 15px var(--color-neon-red-glow);
 }
 
-/* Admin Base Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -74,7 +74,7 @@ img {
     display: block;
 }
 
-/* Admin Login */
+
 .admin-login-container {
     min-height: 100vh;
     display: flex;
@@ -158,7 +158,7 @@ img {
     color: var(--color-neon-blue);
 }
 
-/* Admin Header */
+
 .admin-header {
     background-color: var(--color-dark-2);
     padding: var(--spacing-md) var(--spacing-xl);
@@ -261,13 +261,13 @@ img {
     background-color: var(--color-gray);
 }
 
-/* Admin Container */
+
 .admin-container {
     display: flex;
     flex-grow: 1;
 }
 
-/* Admin Sidebar */
+
 .admin-sidebar {
     width: 250px;
     background-color: var(--color-dark-2);
@@ -336,7 +336,7 @@ img {
     font-size: 1.1rem;
 }
 
-/* Admin Content */
+
 .admin-content {
     flex-grow: 1;
     padding: var(--spacing-xl);
@@ -375,7 +375,7 @@ img {
     color: var(--color-neon-red);
 }
 
-/* Dashboard Stats */
+
 .dashboard-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -425,7 +425,7 @@ img {
     letter-spacing: 1px;
 }
 
-/* Dashboard Content */
+
 .dashboard-content {
     display: grid;
     gap: var(--spacing-xl);
@@ -463,7 +463,7 @@ img {
     text-decoration: underline;
 }
 
-/* Data Table */
+
 .data-table {
     overflow-x: auto;
     margin-right: var(--spacing-sm);
@@ -589,7 +589,7 @@ img {
     color: var(--color-neon-blue);
 }
 
-/* Filter Container */
+
 .filter-container {
     background-color: var(--color-dark-2);
     border-radius: var(--border-radius-md);
@@ -641,7 +641,6 @@ img {
     color: var(--color-dark);
 }
 
-/* Form Styles */
 .form-container {
     background-color: var(--color-dark-2);
     border-radius: var(--border-radius-md);
@@ -757,7 +756,7 @@ input[type="date"]:focus {
   border: 1px solid #ccc;
 }
 
-/* Message Styles */
+
 .message {
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
@@ -796,7 +795,7 @@ input[type="date"]:focus {
     box-shadow: var(--shadow-neon-blue);
 }
 
-/* Responsive Styles */
+
 @media (max-width: 1024px) {
     .dashboard-stats {
         grid-template-columns: repeat(2, 1fr);

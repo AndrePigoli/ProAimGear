@@ -1,5 +1,5 @@
 <?php
-// Product Card Function
+
 function product_card($product) {
     $output = '<div class="product-card">';
     $output .= '<div class="product-image">';
@@ -38,14 +38,14 @@ function product_card($product) {
     return $output;
 }
 
-// Cart Functions
+
 function add_to_cart($product_id, $quantity = 1) {
-    // Initialize cart if it doesn't exist
+    
     if(!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = array();
     }
     
-    // Add to cart or update quantity
+    
     if(isset($_SESSION['cart'][$product_id])) {
         $_SESSION['cart'][$product_id] += $quantity;
     } else {
@@ -95,12 +95,12 @@ function get_cart_count() {
     return $count;
 }
 
-// Admin Functions
+
 function is_admin_logged_in() {
     return isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
 }
 
-// Other utility functions
+
 function truncate_text($text, $length = 100) {
     if (strlen($text) > $length) {
         return substr($text, 0, $length) . '...';

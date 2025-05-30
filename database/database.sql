@@ -1,15 +1,11 @@
--- Create database (Run this separately first)
--- CREATE DATABASE proaim_gear;
--- USE proaim_gear;
 
--- Create categories table
 CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create products table
+
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,

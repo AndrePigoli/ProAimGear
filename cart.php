@@ -3,7 +3,7 @@ session_start();
 include 'includes/db-connect.php';
 include 'includes/functions.php';
 
-// Process cart actions
+
 if(isset($_POST['action']) && isset($_POST['product_id'])) {
     $product_id = $_POST['product_id'];
     
@@ -18,7 +18,7 @@ if(isset($_POST['action']) && isset($_POST['product_id'])) {
     exit;
 }
 
-// Get cart items
+
 $cart_items = [];
 $total = 0;
 

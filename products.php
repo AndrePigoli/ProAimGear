@@ -3,30 +3,30 @@ session_start();
 include 'includes/db-connect.php';
 include 'includes/functions.php';
 
-// Get search query
+
 $search_query = isset($_GET['search']) ? mysqli_real_escape_string($conn, trim($_GET['search'])) : '';
 $search_filter = !empty($search_query) ? "WHERE (p.name LIKE '%$search_query%' OR c.name LIKE '%$search_query%')" : "";
 
-// Get category filter (only applied if no search query)
+
 $category_filter = "";
 if (isset($_GET['category']) && !empty($_GET['category']) && empty($search_query)) {
     $category_id = mysqli_real_escape_string($conn, $_GET['category']);
     $category_filter = "WHERE p.category_id = $category_id";
     
-    // Get category name
+    
     $cat_query = "SELECT name FROM categories WHERE id = $category_id";
     $cat_result = mysqli_query($conn, $cat_query);
     $category_name = mysqli_fetch_assoc($cat_result)['name'];
 }
 
-// Combine filters (search takes precedence)
+
 $where_clause = $search_filter ?: $category_filter;
 
-// Get products
+
 $products_query = "SELECT p.* FROM products p LEFT JOIN categories c ON p.category_id = c.id $where_clause ORDER BY p.created_at DESC";
 $products_result = mysqli_query($conn, $products_query);
 
-// Get all categories for filter
+
 $categories_query = "SELECT * FROM categories ORDER BY name";
 $categories_result = mysqli_query($conn, $categories_query);
 ?>

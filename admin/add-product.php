@@ -3,7 +3,7 @@ session_start();
 include '../includes/db-connect.php';
 include '../includes/functions.php';
 
-// Check if logged in
+
 if(!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: ../login.php');
     exit;
@@ -12,41 +12,41 @@ if(!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true
 $error_message = '';
 $success_message = '';
 
-// Get categories for select
+
 $categories_query = "SELECT * FROM categories ORDER BY name";
 $categories_result = mysqli_query($conn, $categories_query);
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate product data
+    
     $name = trim($_POST['name']);
     $description = trim($_POST['description']);
     $price = (float)$_POST['price'];
     $stock = (int)$_POST['stock'];
     $category_id = (int)$_POST['category_id'];
-    $category_name = trim($_POST['category_name'] ?? ''); // New category input
+    $category_name = trim($_POST['category_name'] ?? ''); 
     $featured = isset($_POST['featured']) ? 1 : 0;
     
-    // Image URLs (simplified for this example - in production, you'd handle file uploads)
+    
     $image = trim($_POST['image']);
     $image_2 = trim($_POST['image_2']);
     $image_3 = trim($_POST['image_3']);
     
-    // Validation: either category_id or category_name must be provided
+   
     if(empty($name) || empty($description) || empty($price) || empty($stock) || (empty($category_id) && empty($category_name)) || empty($image)) {
         $error_message = 'Por favor, preencha todos os campos obrigatórios.';
     } else {
-        // If a new category name is provided, insert it into the categories table
+       
         if (!empty($category_name)) {
             $category_name = mysqli_real_escape_string($conn, $category_name);
             $insert_category_query = "INSERT INTO categories (name, created_at) VALUES ('$category_name', NOW())";
             if (mysqli_query($conn, $insert_category_query)) {
-                $category_id = mysqli_insert_id($conn); // Get the ID of the newly created category
+                $category_id = mysqli_insert_id($conn); 
             } else {
                 $error_message = 'Erro ao adicionar categoria: ' . mysqli_error($conn);
             }
         }
         
-        // Proceed with product insertion if no error
+       
         if (empty($error_message)) {
             $name = mysqli_real_escape_string($conn, $name);
             $description = mysqli_real_escape_string($conn, $description);
@@ -59,7 +59,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if(mysqli_query($conn, $query)) {
                 $success_message = 'Produto adicionado com sucesso!';
-                // Reset form data
+                
                 $name = $description = $image = $image_2 = $image_3 = $category_name = '';
                 $price = $stock = $category_id = $featured = 0;
             } else {
@@ -187,7 +187,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <script src="../assets/js/admin.js"></script>
     <script>
-        // Image Preview
         document.getElementById('image').addEventListener('input', function() {
             showImagePreview('image', 'mainImagePreview');
         });
@@ -211,7 +210,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         
-        // Initialize previews
+        
         window.addEventListener('DOMContentLoaded', function() {
             showImagePreview('image', 'mainImagePreview');
             showImagePreview('image_2', 'image2Preview');

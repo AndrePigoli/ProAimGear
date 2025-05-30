@@ -7,7 +7,7 @@ $success_message = '';
 $error_message = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Form validation
+    
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $subject = trim($_POST['subject']);
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error_message = 'Por favor, forneça um email válido.';
     } else {
-        // Insert into database
+        
         $name = mysqli_real_escape_string($conn, $name);
         $email = mysqli_real_escape_string($conn, $email);
         $subject = mysqli_real_escape_string($conn, $subject);
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (mysqli_query($conn, $query)) {
             $success_message = 'Sua mensagem foi enviada com sucesso! Entraremos em contato em breve.';
-            // Reset form data after successful submission
+            
             $name = $email = $subject = $message = '';
         } else {
             $error_message = 'Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.';

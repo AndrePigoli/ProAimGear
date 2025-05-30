@@ -3,17 +3,14 @@ session_start();
 include '../includes/db-connect.php';
 include '../includes/functions.php';
 
-// Check if logged in
 if(!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: ../login.php');
     exit;
 }
 
-// Initialize variables for filtering
 $search_term = isset($_GET['search']) ? trim($_GET['search']) : '';
 $date_filter = isset($_GET['date']) ? trim($_GET['date']) : '';
 
-// Build the query
 $query = "SELECT * FROM contact_messages";
 $where_clauses = [];
 
@@ -33,7 +30,6 @@ if (!empty($where_clauses)) {
 
 $query .= " ORDER BY created_at DESC";
 
-// Get messages
 $result = mysqli_query($conn, $query);
 ?>
 

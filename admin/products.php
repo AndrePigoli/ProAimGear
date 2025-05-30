@@ -4,17 +4,14 @@ session_start();
 include '../includes/db-connect.php';
 include '../includes/functions.php';
 
-// Check if logged in
 if(!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: ../login.php');
     exit;
 }
 
-// Handle search and filtering
 $search = isset($_GET['search']) ? mysqli_real_escape_string($conn, $_GET['search']) : '';
 $category_filter = isset($_GET['category']) ? (int)$_GET['category'] : 0;
 
-// Build query based on filters
 $query = "SELECT p.*, c.name as category_name FROM products p 
           JOIN categories c ON p.category_id = c.id";
 
@@ -34,10 +31,8 @@ if(!empty($where_clauses)) {
 
 $query .= " ORDER BY p.created_at DESC";
 
-// Get products
 $result = mysqli_query($conn, $query);
 
-// Get categories for filter
 $categories_query = "SELECT * FROM categories ORDER BY name";
 $categories_result = mysqli_query($conn, $categories_query);
 ?>

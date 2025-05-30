@@ -3,13 +3,11 @@ session_start();
 include '../includes/db-connect.php';
 include '../includes/functions.php';
 
-// Checar se ja esta logado
 if(!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: ../login.php');
     exit;
 }
 
-// Get dashboard data
 $products_query = "SELECT COUNT(*) as count FROM products";
 $products_result = mysqli_query($conn, $products_query);
 $products_count = mysqli_fetch_assoc($products_result)['count'];
@@ -22,15 +20,12 @@ $messages_query = "SELECT COUNT(*) as count FROM contact_messages";
 $messages_result = mysqli_query($conn, $messages_query);
 $messages_count = mysqli_fetch_assoc($messages_result)['count'];
 
-// Get recent products
 $recent_products_query = "SELECT * FROM products ORDER BY created_at DESC LIMIT 5";
 $recent_products_result = mysqli_query($conn, $recent_products_query);
 
-// Get low stock products
 $low_stock_query = "SELECT * FROM products WHERE stock <= 5 ORDER BY stock ASC LIMIT 5";
 $low_stock_result = mysqli_query($conn, $low_stock_query);
 
-// Get recent messages
 $recent_messages_query = "SELECT * FROM contact_messages ORDER BY created_at DESC LIMIT 5";
 $recent_messages_result = mysqli_query($conn, $recent_messages_query);
 ?>
@@ -127,7 +122,6 @@ $recent_messages_result = mysqli_query($conn, $recent_messages_query);
                                 <?php
                                 if (mysqli_num_rows($recent_products_result) > 0) {
                                     while($product = mysqli_fetch_assoc($recent_products_result)) {
-                                        // Get category name
                                         $cat_query = "SELECT name FROM categories WHERE id = {$product['category_id']}";
                                         $cat_result = mysqli_query($conn, $cat_query);
                                         $category_name = mysqli_fetch_assoc($cat_result)['name'];

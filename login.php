@@ -3,7 +3,7 @@ session_start();
 include 'includes/db-connect.php';
 include 'includes/functions.php';
 
-// Check if already logged in
+
 if(isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
     header('Location: admin/index.php');
     exit;
@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(empty($username) || empty($password)) {
         $error_message = 'Por favor, preencha todos os campos.';
     } else {
-        // Get admin user data
+        
         $username = mysqli_real_escape_string($conn, $username);
         $query = "SELECT * FROM admin_users WHERE username = '$username'";
         $result = mysqli_query($conn, $query);
@@ -26,14 +26,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(mysqli_num_rows($result) === 1) {
             $user = mysqli_fetch_assoc($result);
             
-            // Verify password
+            
             if(password_verify($password, $user['password'])) {
-                // Set session
+                
                 $_SESSION['admin_logged_in'] = true;
                 $_SESSION['admin_id'] = $user['id'];
                 $_SESSION['admin_username'] = $user['username'];
                 
-                // Redirect to admin panel
+        
                 header('Location: admin/index.php');
                 exit;
             } else {

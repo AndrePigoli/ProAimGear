@@ -3,11 +3,11 @@ session_start();
 include 'includes/db-connect.php';
 include 'includes/functions.php';
 
-// Get featured products
+
 $featured_query = "SELECT * FROM products WHERE featured = 1 LIMIT 6";
 $featured_result = mysqli_query($conn, $featured_query);
 
-// Get new arrivals
+
 $new_query = "SELECT * FROM products ORDER BY created_at DESC LIMIT 8";
 $new_result = mysqli_query($conn, $new_query);
 ?>
@@ -25,7 +25,7 @@ $new_result = mysqli_query($conn, $new_query);
 <body>
     <?php include 'includes/header.php'; ?>
 
-    <!-- Hero Section -->
+
     <section class="hero">
         <div class="hero-content">
             <h1>PRECISÃO ENGENHADA <span class="text-neon">PARA GAMERS</span></h1>
@@ -34,7 +34,7 @@ $new_result = mysqli_query($conn, $new_query);
         </div>
     </section>
 
-    <!-- Featured Products -->
+    
     <section class="container section">
         <div class="section-header">
             <h2>PRODUTOS <span class="text-neon">EM DESTAQUE</span></h2>
@@ -60,7 +60,7 @@ $new_result = mysqli_query($conn, $new_query);
         </div>
     </section>
 
-    <!-- Categories Section -->
+    
     <section class="categories container section">
         <div class="section-header">
             <h2>COMPRE POR <span class="text-neon">CATEGORIA</span></h2>
@@ -86,7 +86,7 @@ $new_result = mysqli_query($conn, $new_query);
         </div>
     </section>
 
-    <!-- New Arrivals -->
+    
     <section class="container section">
         <div class="section-header">
             <h2>NOVOS <span class="text-neon">LANÇAMENTOS</span></h2>
@@ -106,7 +106,7 @@ $new_result = mysqli_query($conn, $new_query);
         </div>
     </section>
 
-    <!-- Gaming Advantage Section -->
+    
     <section class="advantage-section">
         <div class="container">
             <div class="advantage-content">

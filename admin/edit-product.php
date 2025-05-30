@@ -3,13 +3,13 @@ session_start();
 include '../includes/db-connect.php';
 include '../includes/functions.php';
 
-// Check if logged in
+
 if(!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header('Location: ../login.php');
     exit;
 }
 
-// Check if product ID is provided
+
 if(!isset($_GET['id']) || empty($_GET['id'])) {
     header('Location: products.php');
     exit;
@@ -19,7 +19,7 @@ $product_id = (int)$_GET['id'];
 $error_message = '';
 $success_message = '';
 
-// Get product data
+
 $query = "SELECT * FROM products WHERE id = $product_id";
 $result = mysqli_query($conn, $query);
 
@@ -30,12 +30,11 @@ if(mysqli_num_rows($result) === 0) {
 
 $product = mysqli_fetch_assoc($result);
 
-// Get categories for select
+
 $categories_query = "SELECT * FROM categories ORDER BY name";
 $categories_result = mysqli_query($conn, $categories_query);
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate product data
     $name = trim($_POST['name']);
     $description = trim($_POST['description']);
     $price = (float)$_POST['price'];
@@ -43,7 +42,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category_id = (int)$_POST['category_id'];
     $featured = isset($_POST['featured']) ? 1 : 0;
     
-    // Image URLs
     $image = trim($_POST['image']);
     $image_2 = trim($_POST['image_2']);
     $image_3 = trim($_POST['image_3']);
@@ -51,7 +49,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(empty($name) || empty($description) || empty($price) || empty($category_id) || empty($image)) {
         $error_message = 'Por favor, preencha todos os campos obrigatórios.';
     } else {
-        // Update product
         $name = mysqli_real_escape_string($conn, $name);
         $description = mysqli_real_escape_string($conn, $description);
         $image = mysqli_real_escape_string($conn, $image);
@@ -73,7 +70,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         if(mysqli_query($conn, $update_query)) {
             $success_message = 'Produto atualizado com sucesso!';
             
-            // Refresh product data
             $result = mysqli_query($conn, $query);
             $product = mysqli_fetch_assoc($result);
         } else {
@@ -192,7 +188,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <script src="../assets/js/admin.js"></script>
     <script>
-        // Image Preview
         document.getElementById('image').addEventListener('input', function() {
             showImagePreview('image', 'mainImagePreview');
         });
@@ -216,7 +211,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         
-        // Initialize previews
         window.addEventListener('DOMContentLoaded', function() {
             showImagePreview('image', 'mainImagePreview');
             showImagePreview('image_2', 'image2Preview');
